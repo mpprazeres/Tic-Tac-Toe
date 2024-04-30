@@ -47,10 +47,17 @@ function changePlayer() {
 
 function checkWinner() {
   let roundWon = false;
-
+    for (let cond of winConditions){
+      const [a,b,c] = cond;
+      if(options[a] === currentPlayer && options[b] === currentPlayer && options[c] === currentPlayer){
+        roundWon = true;
+        break;
+      }
+    }
   // Verificar se estão reunidas as condições para haver um vencedor
 
   if (roundWon) {
+    running = false;
     statusText.textContent = `${currentPlayer} ganhou o jogo!`;
   } else if (!options.includes('')) {
     statusText.textContent = 'Empate';
